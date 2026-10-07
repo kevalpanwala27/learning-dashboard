@@ -7,6 +7,13 @@ Android · Kotlin · Jetpack Compose · MVVM + Repository · Room · Retrofit
 Login → course list → course details → mark lessons complete → works offline after the first load.
 Demo login: any valid email with a 6+ character password. `blocked@example.com` always fails, to show the error state.
 
+<p>
+  <img src="docs/screenshots/login.png" width="180" alt="Login" />
+  <img src="docs/screenshots/dashboard.png" width="180" alt="Dashboard" />
+  <img src="docs/screenshots/details.png" width="180" alt="Course details" />
+  <img src="docs/screenshots/dashboard-dark.png" width="180" alt="Dashboard, dark theme" />
+</p>
+
 ## Run it
 
 ```bash
