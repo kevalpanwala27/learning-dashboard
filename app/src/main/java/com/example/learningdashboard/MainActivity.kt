@@ -4,16 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.material3.Text
+import com.example.learningdashboard.ui.navigation.AppNavHost
 import com.example.learningdashboard.ui.theme.LearningDashboardTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val container = (application as LearningDashboardApp).container
         setContent {
             LearningDashboardTheme {
-                Text("Learning Dashboard")
+                AppNavHost(authRepository = container.authRepository)
             }
         }
     }
