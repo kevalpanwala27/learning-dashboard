@@ -3,6 +3,7 @@
     <string name="app_name">Learning Dashboard</string>
 
     <!-- Login -->
+    <string name="login_tagline">Pick up right where you left off.</string>
     <string name="login_title">Welcome back</string>
     <string name="login_subtitle">Sign in to continue learning</string>
     <string name="login_email">Email</string>
@@ -13,21 +14,30 @@
     <string name="login_demo_hint">Demo: any email with a 6+ character password works. blocked@example.com always fails.</string>
 
     <!-- Dashboard -->
+    <string name="dashboard_greeting">Welcome back</string>
     <string name="dashboard_title">My Courses</string>
     <string name="dashboard_logout">Log out</string>
+    <string name="dashboard_overall_title">Overall progress</string>
+    <string name="dashboard_overall_summary">%1$d courses · %2$d of %3$d lessons done</string>
+    <string name="dashboard_overall_loading">Loading your courses…</string>
     <string name="dashboard_offline_banner">You\'re offline. Showing saved courses.</string>
-    <string name="dashboard_offline_empty">You\'re offline and no courses have been saved yet. Connect to the internet and try again.</string>
-    <string name="dashboard_empty">No courses yet. Pull down to refresh.</string>
+    <string name="dashboard_offline_empty_title">Nothing saved yet</string>
+    <string name="dashboard_offline_empty">You\'re offline and no courses have been saved on this device. Connect to the internet and try again.</string>
+    <string name="dashboard_error_title">Couldn\'t load courses</string>
+    <string name="dashboard_empty_title">No courses yet</string>
+    <string name="dashboard_empty">Your catalogue is empty. Pull down to refresh once courses are available.</string>
     <string name="dashboard_retry">Retry</string>
     <string name="dashboard_refresh_failed">Couldn\'t refresh: %1$s</string>
     <string name="course_instructor">By %1$s</string>
     <string name="course_progress">%1$d%%</string>
-    <string name="course_lessons">%1$d lessons</string>
+    <string name="course_lessons_done">%1$d of %2$d lessons</string>
     <string name="course_continue">Continue</string>
 
     <!-- Details -->
     <string name="details_back">Back</string>
     <string name="details_progress_summary">%1$d of %2$d lessons completed</string>
+    <string name="details_remaining">%1$d remaining</string>
+    <string name="details_all_done">All lessons completed</string>
     <string name="details_lessons_header">Lessons</string>
     <string name="details_not_found">This course is no longer available.</string>
     <string name="lesson_completed">Completed</string>

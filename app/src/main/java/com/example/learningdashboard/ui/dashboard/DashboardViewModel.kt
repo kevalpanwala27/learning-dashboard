@@ -3,6 +3,7 @@ package com.example.learningdashboard.ui.dashboard
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.learningdashboard.domain.model.Course
+import com.example.learningdashboard.domain.model.ProgressCalculator
 import com.example.learningdashboard.domain.repository.AuthRepository
 import com.example.learningdashboard.domain.repository.CourseRepository
 import com.example.learningdashboard.domain.repository.RefreshOutcome
@@ -15,12 +16,26 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+/** Aggregate across all courses, shown in the dashboard header. */
+data class OverallProgress(val courseCount: Int, val completedLessons: Int, val totalLessons: Int) {
+    val percent: Int get() = ProgressCalculator.percent(completedLessons, totalLessons)
+
+    companion object {
+        fun of(courses: List<Course>) = OverallProgress(
+            courseCount = courses.size,
+            completedLessons = courses.sumOf { it.completedCount },
+            totalLessons = courses.sumOf { it.lessonCount },
+        )
+    }
+}
+
 sealed interface DashboardUiState {
     data object Loading : DashboardUiState
     data object Empty : DashboardUiState
     data class Error(val message: String, val isOffline: Boolean) : DashboardUiState
     data class Success(
         val courses: List<Course>,
+        val overall: OverallProgress,
         /** Last refresh failed for lack of connectivity; the list is the cached copy. */
         val isOffline: Boolean,
         val isRefreshing: Boolean,
@@ -58,6 +73,7 @@ class DashboardViewModel(
             } else {
                 DashboardUiState.Success(
                     courses = courses,
+                    overall = OverallProgress.of(courses),
                     isOffline = status == RefreshStatus.Offline,
                     isRefreshing = status == RefreshStatus.Refreshing,
                 )
