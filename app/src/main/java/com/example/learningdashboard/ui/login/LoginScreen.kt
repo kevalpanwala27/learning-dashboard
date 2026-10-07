@@ -1,5 +1,6 @@
 package com.example.learningdashboard.ui.login
 
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -34,7 +35,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -70,6 +74,7 @@ private fun LoginContent(
     onSubmit: () -> Unit,
 ) {
     var showPassword by remember { mutableStateOf(false) }
+    val focusManager = LocalFocusManager.current
 
     val glow = accentGlow()
     // Surface sets the content colour for the whole screen; the glow is drawn behind everything
@@ -87,8 +92,12 @@ private fun LoginContent(
                     ),
                 )
             }
-            .verticalScroll(rememberScrollState())
-            .imePadding(),
+            // Tapping anywhere outside a field drops focus and closes the keyboard.
+            .pointerInput(Unit) { detectTapGestures { focusManager.clearFocus() } }
+            // imePadding BEFORE verticalScroll shrinks the viewport when the keyboard opens,
+            // so the focused field is scrolled into view above it instead of being covered.
+            .imePadding()
+            .verticalScroll(rememberScrollState()),
     ) {
         Box(
             modifier = Modifier
@@ -138,6 +147,7 @@ private fun LoginContent(
                 shape = MaterialTheme.shapes.medium,
                 colors = fieldColors(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next),
+                keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Down) }),
                 modifier = Modifier.fillMaxWidth(),
             )
             Spacer(Modifier.height(16.dp))
@@ -166,7 +176,7 @@ private fun LoginContent(
                     }
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done),
-                keyboardActions = KeyboardActions(onDone = { onSubmit() }),
+                keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus(); onSubmit() }),
                 modifier = Modifier.fillMaxWidth(),
             )
 
@@ -185,7 +195,7 @@ private fun LoginContent(
             Spacer(Modifier.height(28.dp))
             PrimaryButton(
                 text = stringResource(R.string.login_button),
-                onClick = onSubmit,
+                onClick = { focusManager.clearFocus(); onSubmit() },
                 loading = state.isSubmitting,
                 modifier = Modifier.fillMaxWidth(),
             )

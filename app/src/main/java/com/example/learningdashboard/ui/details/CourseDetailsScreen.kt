@@ -45,7 +45,6 @@ import com.example.learningdashboard.ui.components.PercentBadge
 import com.example.learningdashboard.ui.components.ProgressGauge
 import com.example.learningdashboard.ui.components.StateMessage
 import com.example.learningdashboard.ui.components.ThinProgressBar
-import com.example.learningdashboard.ui.theme.successColor
 
 @Composable
 fun CourseDetailsScreen(
@@ -198,7 +197,7 @@ private fun LessonRow(index: Int, lesson: Lesson, onMarkCompleted: () -> Unit) {
                 Text(
                     stringResource(if (lesson.isCompleted) R.string.lesson_completed else R.string.lesson_pending),
                     style = MaterialTheme.typography.bodySmall,
-                    color = if (lesson.isCompleted) successColor() else MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = if (lesson.isCompleted) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
             if (!lesson.isCompleted) {

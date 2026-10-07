@@ -1,11 +1,9 @@
 package com.example.learningdashboard.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.Typography
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -17,45 +15,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.learningdashboard.R
 
-// Brand palette: lime is the signature accent, blue for secondary actions, orange for progress badges.
-private val Lime = Color(0xFFD5EE6E)
-private val LimeInk = Color(0xFF111500)
-private val OliveForLight = Color(0xFF5C7A00)
+// Brand palette: one accent only. Olive carries every primary signal (CTA, progress, completion,
+// loaders); orange marks percentage badges; blue is reserved for secondary actions.
+private val Olive = Color(0xFF5C7A00)
+private val OliveSoft = Color(0xFFE9F0D6)
 private val Blue = Color(0xFF0A84FF)
-private val Orange = Color(0xFFFFA64D)
-private val OrangeInk = Color(0xFF2A1600)
 
-private val DarkColors = darkColorScheme(
-    primary = Lime,
-    onPrimary = LimeInk,
-    primaryContainer = Lime,
-    onPrimaryContainer = LimeInk,
-    secondary = Blue,
-    onSecondary = Color.White,
-    tertiary = Orange,
-    onTertiary = OrangeInk,
-    tertiaryContainer = Color(0xFF3A2A12),
-    onTertiaryContainer = Color(0xFFFFC98A),
-    background = Color(0xFF0C0C0C),
-    onBackground = Color(0xFFF2F2F5),
-    surface = Color(0xFF1A1A1D),
-    onSurface = Color(0xFFF2F2F5),
-    surfaceVariant = Color(0xFF27272B),
-    onSurfaceVariant = Color(0xFF9C9CA6),
-    outline = Color(0xFF3C3C43),
-    outlineVariant = Color(0xFF2A2A2F),
-    inverseSurface = Color(0xFFF2F2F5),
-    inverseOnSurface = Color(0xFF0C0C0C),
-    error = Color(0xFFFF6B6B),
-    errorContainer = Color(0xFF3A1A1A),
-    onErrorContainer = Color(0xFFFFB4B4),
-)
-
+/** Light only, by design: one theme means every screen is designed rather than auto-inverted. */
 private val LightColors = lightColorScheme(
-    primary = OliveForLight,
+    primary = Olive,
     onPrimary = Color.White,
-    primaryContainer = Lime,
-    onPrimaryContainer = LimeInk,
+    primaryContainer = Olive,
+    onPrimaryContainer = Color.White,
+    surfaceTint = Olive,
     secondary = Blue,
     onSecondary = Color.White,
     tertiary = Color(0xFFE07B00),
@@ -76,6 +48,9 @@ private val LightColors = lightColorScheme(
     errorContainer = Color(0xFFFDE7E5),
     onErrorContainer = Color(0xFF5C120D),
 )
+
+/** Soft olive wash used behind the login header. */
+val AccentWash = OliveSoft
 
 private val AppShapes = Shapes(
     extraSmall = RoundedCornerShape(8.dp),
@@ -106,17 +81,10 @@ private val AppTypography = Typography(
     labelSmall = TextStyle(fontFamily = Inter, fontSize = 11.sp, lineHeight = 14.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.8.sp),
 )
 
-/** Success green for completed lessons; not part of the Material scheme so kept here. */
 @Composable
-fun successColor(): Color = if (isSystemInDarkTheme()) Color(0xFF4ADE80) else Color(0xFF15803D)
-
-@Composable
-fun LearningDashboardTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit,
-) {
+fun LearningDashboardTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colorScheme = if (darkTheme) DarkColors else LightColors,
+        colorScheme = LightColors,
         shapes = AppShapes,
         typography = AppTypography,
         content = content,

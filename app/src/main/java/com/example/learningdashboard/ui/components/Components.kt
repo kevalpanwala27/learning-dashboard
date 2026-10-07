@@ -4,7 +4,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
@@ -44,8 +43,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.learningdashboard.R
+import com.example.learningdashboard.ui.theme.AccentWash
 
-/** Raised card: elevation by colour in dark, by a soft shadow in light. Never a border. */
+/** Raised card: white on the grey background with a soft shadow. Never a border. */
 @Composable
 fun AppCard(
     modifier: Modifier = Modifier,
@@ -58,14 +58,14 @@ fun AppCard(
     Surface(
         shape = shape,
         color = MaterialTheme.colorScheme.surface,
-        shadowElevation = if (isSystemInDarkTheme()) 0.dp else 2.dp,
+        shadowElevation = 2.dp,
         modifier = modifier.fillMaxWidth().then(clickable),
     ) {
         Column(modifier = Modifier.padding(contentPadding), content = content)
     }
 }
 
-/** Lime pill: the one primary call to action on a screen. */
+/** Olive pill: the one primary call to action on a screen. */
 @Composable
 fun PrimaryButton(
     text: String,
@@ -74,15 +74,16 @@ fun PrimaryButton(
     enabled: Boolean = true,
     loading: Boolean = false,
 ) {
+    // While loading the button keeps its olive fill with a white spinner; grey is only for a real disabled state.
     Button(
         onClick = onClick,
         enabled = enabled && !loading,
         shape = CircleShape,
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
+            disabledContainerColor = if (loading) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
+            disabledContentColor = if (loading) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
         ),
         modifier = modifier.height(56.dp),
     ) {
@@ -90,7 +91,7 @@ fun PrimaryButton(
             CircularProgressIndicator(
                 modifier = Modifier.size(22.dp),
                 strokeWidth = 2.5.dp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = MaterialTheme.colorScheme.onPrimary,
             )
         } else {
             Text(text, style = MaterialTheme.typography.labelLarge)
@@ -272,4 +273,4 @@ fun OfflineBanner(modifier: Modifier = Modifier) {
 
 /** Soft colour wash for the login header. Drawn with a radial brush, no image asset needed. */
 @Composable
-fun accentGlow(): Color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = if (isSystemInDarkTheme()) 0.28f else 0.6f)
+fun accentGlow(): Color = AccentWash

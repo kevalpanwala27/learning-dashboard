@@ -8,10 +8,9 @@ Login → course list → course details → mark lessons complete → works off
 Demo login: any valid email with a 6+ character password. `blocked@example.com` always fails, to show the error state.
 
 <p>
-  <img src="docs/screenshots/login.png" width="160" alt="Login" />
-  <img src="docs/screenshots/dashboard.png" width="160" alt="Dashboard" />
-  <img src="docs/screenshots/details.png" width="160" alt="Course details" />
-  <img src="docs/screenshots/dashboard-light.png" width="160" alt="Dashboard, light theme" />
+  <img src="docs/screenshots/login.png" width="200" alt="Login" />
+  <img src="docs/screenshots/dashboard.png" width="200" alt="Dashboard" />
+  <img src="docs/screenshots/details.png" width="200" alt="Course details" />
 </p>
 
 **Run:** `./gradlew installDebug` fetches `mock-api/courses.json` from a local server (`cd mock-api && python3 -m http.server 8080`) so loading, failure and offline can be tested without GitHub. `assembleRelease` fetches the same file from this repo over HTTPS. `./gradlew test` runs the unit tests.
