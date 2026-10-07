@@ -8,97 +8,107 @@ import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.learningdashboard.R
 
-// Brand palette. Indigo for primary actions, violet as the gradient partner, amber for the offline notice.
-private val Indigo600 = Color(0xFF4F46E5)
-private val Indigo300 = Color(0xFFA5B4FC)
-private val Indigo100 = Color(0xFFE0E7FF)
-private val Indigo950 = Color(0xFF1E1B4B)
-private val Violet600 = Color(0xFF7C3AED)
-private val Violet300 = Color(0xFFC4B5FD)
-
-private val LightColors = lightColorScheme(
-    primary = Indigo600,
-    onPrimary = Color.White,
-    primaryContainer = Indigo100,
-    onPrimaryContainer = Indigo950,
-    secondary = Violet600,
-    onSecondary = Color.White,
-    secondaryContainer = Color(0xFFEDE9FE),
-    onSecondaryContainer = Color(0xFF2E1065),
-    tertiaryContainer = Color(0xFFFFF4CC),
-    onTertiaryContainer = Color(0xFF6B4E00),
-    background = Color(0xFFF4F4FB),
-    onBackground = Color(0xFF17172B),
-    surface = Color.White,
-    onSurface = Color(0xFF17172B),
-    surfaceVariant = Color(0xFFEDEDF7),
-    onSurfaceVariant = Color(0xFF5B5B75),
-    outline = Color(0xFFC6C6DC),
-    outlineVariant = Color(0xFFE3E3F0),
-    error = Color(0xFFB3261E),
-    errorContainer = Color(0xFFFCE8E6),
-    onErrorContainer = Color(0xFF5C120D),
-)
+// Brand palette: lime is the signature accent, blue for secondary actions, orange for progress badges.
+private val Lime = Color(0xFFD5EE6E)
+private val LimeInk = Color(0xFF111500)
+private val OliveForLight = Color(0xFF5C7A00)
+private val Blue = Color(0xFF0A84FF)
+private val Orange = Color(0xFFFFA64D)
+private val OrangeInk = Color(0xFF2A1600)
 
 private val DarkColors = darkColorScheme(
-    primary = Indigo300,
-    onPrimary = Indigo950,
-    primaryContainer = Color(0xFF3730A3),
-    onPrimaryContainer = Indigo100,
-    secondary = Violet300,
-    onSecondary = Color(0xFF2E1065),
-    secondaryContainer = Color(0xFF4C1D95),
-    onSecondaryContainer = Color(0xFFEDE9FE),
-    tertiaryContainer = Color(0xFF4A3A00),
-    onTertiaryContainer = Color(0xFFFFE08A),
-    background = Color(0xFF0E0F1D),
-    onBackground = Color(0xFFE6E6F2),
-    surface = Color(0xFF171829),
-    onSurface = Color(0xFFE6E6F2),
-    surfaceVariant = Color(0xFF242539),
-    onSurfaceVariant = Color(0xFFA9A9C4),
-    outline = Color(0xFF4A4B66),
-    outlineVariant = Color(0xFF2E2F45),
-    error = Color(0xFFF2B8B5),
-    errorContainer = Color(0xFF5C120D),
-    onErrorContainer = Color(0xFFFCE8E6),
+    primary = Lime,
+    onPrimary = LimeInk,
+    primaryContainer = Lime,
+    onPrimaryContainer = LimeInk,
+    secondary = Blue,
+    onSecondary = Color.White,
+    tertiary = Orange,
+    onTertiary = OrangeInk,
+    tertiaryContainer = Color(0xFF3A2A12),
+    onTertiaryContainer = Color(0xFFFFC98A),
+    background = Color(0xFF0C0C0C),
+    onBackground = Color(0xFFF2F2F5),
+    surface = Color(0xFF1A1A1D),
+    onSurface = Color(0xFFF2F2F5),
+    surfaceVariant = Color(0xFF27272B),
+    onSurfaceVariant = Color(0xFF9C9CA6),
+    outline = Color(0xFF3C3C43),
+    outlineVariant = Color(0xFF2A2A2F),
+    inverseSurface = Color(0xFFF2F2F5),
+    inverseOnSurface = Color(0xFF0C0C0C),
+    error = Color(0xFFFF6B6B),
+    errorContainer = Color(0xFF3A1A1A),
+    onErrorContainer = Color(0xFFFFB4B4),
+)
+
+private val LightColors = lightColorScheme(
+    primary = OliveForLight,
+    onPrimary = Color.White,
+    primaryContainer = Lime,
+    onPrimaryContainer = LimeInk,
+    secondary = Blue,
+    onSecondary = Color.White,
+    tertiary = Color(0xFFE07B00),
+    onTertiary = Color.White,
+    tertiaryContainer = Color(0xFFFFF0D6),
+    onTertiaryContainer = Color(0xFF6B3F00),
+    background = Color(0xFFF5F5F8),
+    onBackground = Color(0xFF0C0C0C),
+    surface = Color.White,
+    onSurface = Color(0xFF0C0C0C),
+    surfaceVariant = Color(0xFFEEEEF2),
+    onSurfaceVariant = Color(0xFF6A6A75),
+    outline = Color(0xFFD6D6DD),
+    outlineVariant = Color(0xFFE8E8EE),
+    inverseSurface = Color(0xFF0C0C0C),
+    inverseOnSurface = Color.White,
+    error = Color(0xFFD93025),
+    errorContainer = Color(0xFFFDE7E5),
+    onErrorContainer = Color(0xFF5C120D),
 )
 
 private val AppShapes = Shapes(
     extraSmall = RoundedCornerShape(8.dp),
     small = RoundedCornerShape(12.dp),
     medium = RoundedCornerShape(16.dp),
-    large = RoundedCornerShape(20.dp),
-    extraLarge = RoundedCornerShape(28.dp),
+    large = RoundedCornerShape(24.dp),
+    extraLarge = RoundedCornerShape(32.dp),
+)
+
+val Inter = FontFamily(
+    Font(R.font.inter_regular, FontWeight.Normal),
+    Font(R.font.inter_medium, FontWeight.Medium),
+    Font(R.font.inter_semibold, FontWeight.SemiBold),
+    Font(R.font.inter_bold, FontWeight.Bold),
 )
 
 private val AppTypography = Typography(
-    headlineLarge = TextStyle(fontSize = 32.sp, lineHeight = 38.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.5).sp),
-    headlineMedium = TextStyle(fontSize = 26.sp, lineHeight = 32.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.3).sp),
-    titleLarge = TextStyle(fontSize = 20.sp, lineHeight = 26.sp, fontWeight = FontWeight.SemiBold),
-    titleMedium = TextStyle(fontSize = 17.sp, lineHeight = 22.sp, fontWeight = FontWeight.SemiBold),
-    bodyLarge = TextStyle(fontSize = 16.sp, lineHeight = 24.sp),
-    bodyMedium = TextStyle(fontSize = 14.sp, lineHeight = 20.sp),
-    bodySmall = TextStyle(fontSize = 12.sp, lineHeight = 16.sp),
-    labelLarge = TextStyle(fontSize = 14.sp, lineHeight = 20.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.1.sp),
-    labelMedium = TextStyle(fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.SemiBold),
+    displaySmall = TextStyle(fontFamily = Inter, fontSize = 48.sp, lineHeight = 52.sp, fontWeight = FontWeight.Bold, letterSpacing = (-1).sp),
+    headlineLarge = TextStyle(fontFamily = Inter, fontSize = 32.sp, lineHeight = 38.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.6).sp),
+    headlineMedium = TextStyle(fontFamily = Inter, fontSize = 26.sp, lineHeight = 32.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.4).sp),
+    titleLarge = TextStyle(fontFamily = Inter, fontSize = 20.sp, lineHeight = 26.sp, fontWeight = FontWeight.SemiBold, letterSpacing = (-0.2).sp),
+    titleMedium = TextStyle(fontFamily = Inter, fontSize = 17.sp, lineHeight = 22.sp, fontWeight = FontWeight.SemiBold),
+    bodyLarge = TextStyle(fontFamily = Inter, fontSize = 16.sp, lineHeight = 24.sp),
+    bodyMedium = TextStyle(fontFamily = Inter, fontSize = 14.sp, lineHeight = 20.sp),
+    bodySmall = TextStyle(fontFamily = Inter, fontSize = 12.sp, lineHeight = 16.sp),
+    labelLarge = TextStyle(fontFamily = Inter, fontSize = 15.sp, lineHeight = 20.sp, fontWeight = FontWeight.SemiBold),
+    labelMedium = TextStyle(fontFamily = Inter, fontSize = 13.sp, lineHeight = 16.sp, fontWeight = FontWeight.SemiBold),
+    labelSmall = TextStyle(fontFamily = Inter, fontSize = 11.sp, lineHeight = 14.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.8.sp),
 )
 
-/** The one gradient used by every hero header and primary button. */
+/** Success green for completed lessons; not part of the Material scheme so kept here. */
 @Composable
-fun heroGradient(): Brush {
-    val dark = isSystemInDarkTheme()
-    return Brush.linearGradient(
-        colors = if (dark) listOf(Color(0xFF3730A3), Color(0xFF5B21B6)) else listOf(Indigo600, Violet600),
-    )
-}
+fun successColor(): Color = if (isSystemInDarkTheme()) Color(0xFF4ADE80) else Color(0xFF15803D)
 
 @Composable
 fun LearningDashboardTheme(

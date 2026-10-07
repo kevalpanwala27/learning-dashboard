@@ -3,11 +3,12 @@
     <string name="app_name">Learning Dashboard</string>
 
     <!-- Login -->
-    <string name="login_tagline">Pick up right where you left off.</string>
-    <string name="login_title">Welcome back</string>
-    <string name="login_subtitle">Sign in to continue learning</string>
+    <string name="login_welcome">Welcome to\nLearning Dashboard</string>
+    <string name="login_subtitle">Let\'s get started by signing in</string>
     <string name="login_email">Email</string>
+    <string name="login_email_placeholder">you@example.com</string>
     <string name="login_password">Password</string>
+    <string name="login_password_placeholder">At least 6 characters</string>
     <string name="login_button">Log in</string>
     <string name="login_show_password">Show password</string>
     <string name="login_hide_password">Hide password</string>
@@ -17,9 +18,12 @@
     <string name="dashboard_greeting">Welcome back</string>
     <string name="dashboard_title">My Courses</string>
     <string name="dashboard_logout">Log out</string>
-    <string name="dashboard_overall_title">Overall progress</string>
-    <string name="dashboard_overall_summary">%1$d courses · %2$d of %3$d lessons done</string>
-    <string name="dashboard_overall_loading">Loading your courses…</string>
+    <string name="dashboard_your_progress">Your progress</string>
+    <string name="dashboard_complete">complete</string>
+    <string name="stat_courses">Courses</string>
+    <string name="stat_lessons_done">Lessons done</string>
+    <string name="stat_remaining">Remaining</string>
+    <string name="dashboard_courses_header">Courses</string>
     <string name="dashboard_offline_banner">You\'re offline. Showing saved courses.</string>
     <string name="dashboard_offline_empty_title">Nothing saved yet</string>
     <string name="dashboard_offline_empty">You\'re offline and no courses have been saved on this device. Connect to the internet and try again.</string>
@@ -28,14 +32,16 @@
     <string name="dashboard_empty">Your catalogue is empty. Pull down to refresh once courses are available.</string>
     <string name="dashboard_retry">Retry</string>
     <string name="dashboard_refresh_failed">Couldn\'t refresh: %1$s</string>
-    <string name="course_instructor">By %1$s</string>
+    <string name="course_by">By %1$s</string>
     <string name="course_progress">%1$d%%</string>
     <string name="course_lessons_done">%1$d of %2$d lessons</string>
     <string name="course_continue">Continue</string>
 
     <!-- Details -->
     <string name="details_back">Back</string>
-    <string name="details_progress_summary">%1$d of %2$d lessons completed</string>
+    <string name="details_progress_label">Progress</string>
+    <string name="details_lessons_fraction">%1$d of %2$d</string>
+    <string name="details_lessons_completed_label">lessons completed</string>
     <string name="details_remaining">%1$d remaining</string>
     <string name="details_all_done">All lessons completed</string>
     <string name="details_lessons_header">Lessons</string>
